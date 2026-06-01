@@ -13,6 +13,7 @@ import {
   Smartphone,
   Moon,
   RefreshCw,
+  ClipboardList,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { images, releases } from "@/lib/data";
@@ -35,6 +36,7 @@ const capabilityIcons: Record<string, LucideIcon> = {
   import: Smartphone,
   darktheme: Moon,
   updates: RefreshCw,
+  resume: ClipboardList,
 };
 
 export function NovaDocsShowcase() {

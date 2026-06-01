@@ -10,6 +10,7 @@ import {
   UserCircle,
   Sparkles,
   Boxes,
+  ClipboardList,
 } from "lucide-react";
 
 export const BRAND = "NOVA";
@@ -41,6 +42,7 @@ export const iconById: Record<string, LucideIcon> = {
   modern: Palette,
   reliable: ShieldCheck,
   evolving: Rocket,
+  resume: ClipboardList,
 };
 
 /** Product accent gradients, language-agnostic. */
@@ -54,11 +56,11 @@ export const releases = {
   novadocs: {
     /** Direct download of the Windows installer (.exe). */
     download:
-      "https://github.com/beautysouls/NovaDocs/releases/download/v1.0.6/NovaDocs-Setup-1.0.6.exe",
+      "https://github.com/beautysouls/NovaDocs/releases/download/v1.0.7/NovaDocs-Setup-1.0.7.exe",
     /** Installer filename, used as the suggested download name. */
-    fileName: "NovaDocs-Setup-1.0.6.exe",
+    fileName: "NovaDocs-Setup-1.0.7.exe",
     /** GitHub release page (release notes). */
-    notes: "https://github.com/beautysouls/NovaDocs/releases/tag/v1.0.6",
+    notes: "https://github.com/beautysouls/NovaDocs/releases/tag/v1.0.7",
   },
 };
 

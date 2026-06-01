@@ -18,7 +18,13 @@ type ProductItem = StatusItem & {
   features: string[];
 };
 
-type FeatureItem = { id: string; emoji: string; title: string; description: string };
+type FeatureItem = {
+  id: string;
+  emoji: string;
+  title: string;
+  description: string;
+  templates?: string[];
+};
 
 type RoadmapGroup = {
   statusKey: StatusKey;
@@ -233,6 +239,7 @@ const it: Dictionary = {
       { id: "import", label: "Import da telefono" },
       { id: "darktheme", label: "Tema scuro" },
       { id: "updates", label: "Aggiornamenti automatici" },
+      { id: "resume", label: "AI Resume Builder" },
     ],
   },
   novacloud: {
@@ -294,6 +301,20 @@ const it: Dictionary = {
         title: "In evoluzione",
         description: "Nuove funzionalità e prodotti sempre in sviluppo.",
       },
+      {
+        id: "resume",
+        emoji: "📄",
+        title: "AI Resume Builder",
+        description:
+          "Crea curriculum professionali in pochi minuti con template moderni e assistenza IA. Esporta in PDF e DOCX.",
+        templates: [
+          "Modern",
+          "Professional",
+          "Minimal",
+          "Europass",
+          "Creative",
+        ],
+      },
     ],
   },
   roadmap: {
@@ -339,7 +360,7 @@ const it: Dictionary = {
       name: "NovaDocs",
       description:
         "Moderno editor documenti desktop progettato per produttività, semplicità e prestazioni.",
-      version: "v1.0.6",
+      version: "v1.0.7",
       versionLabel: "Versione",
       badges: [
         { id: "windows", label: "Windows" },
@@ -385,6 +406,21 @@ const it: Dictionary = {
     description:
       "Rilasciamo aggiornamenti di continuo. Ecco le ultime novità nell'ecosistema Nova.",
     entries: [
+      {
+        id: "novadocs-107",
+        product: "NovaDocs",
+        version: "v1.0.7",
+        date: "Giugno 2026",
+        changes: [
+          "Nuovo AI Resume Builder",
+          "5 template professionali per curriculum",
+          "Esportazione PDF",
+          "Esportazione DOCX",
+          "Miglioramenti a NovaCloud",
+          "Miglioramenti a NovaDrop",
+          "Correzioni e ottimizzazioni generali",
+        ],
+      },
       {
         id: "novadocs",
         product: "NovaDocs",
@@ -532,6 +568,7 @@ const en: Dictionary = {
       { id: "import", label: "Import from phone" },
       { id: "darktheme", label: "Dark theme" },
       { id: "updates", label: "Automatic updates" },
+      { id: "resume", label: "AI Resume Builder" },
     ],
   },
   novacloud: {
@@ -593,6 +630,20 @@ const en: Dictionary = {
         title: "Evolving",
         description: "New features and products constantly in development.",
       },
+      {
+        id: "resume",
+        emoji: "📄",
+        title: "AI Resume Builder",
+        description:
+          "Create professional resumes in minutes with modern templates and AI assistance. Export to PDF and DOCX.",
+        templates: [
+          "Modern",
+          "Professional",
+          "Minimal",
+          "Europass",
+          "Creative",
+        ],
+      },
     ],
   },
   roadmap: {
@@ -638,7 +689,7 @@ const en: Dictionary = {
       name: "NovaDocs",
       description:
         "Modern desktop document editor designed for productivity, simplicity and performance.",
-      version: "v1.0.6",
+      version: "v1.0.7",
       versionLabel: "Version",
       badges: [
         { id: "windows", label: "Windows" },
@@ -684,6 +735,21 @@ const en: Dictionary = {
     description:
       "We ship continuously. Here are the latest updates across the Nova ecosystem.",
     entries: [
+      {
+        id: "novadocs-107",
+        product: "NovaDocs",
+        version: "v1.0.7",
+        date: "June 2026",
+        changes: [
+          "New AI Resume Builder",
+          "5 professional resume templates",
+          "PDF export",
+          "DOCX export",
+          "NovaCloud improvements",
+          "NovaDrop improvements",
+          "General fixes and optimizations",
+        ],
+      },
       {
         id: "novadocs",
         product: "NovaDocs",
