@@ -66,7 +66,7 @@ export const releases = {
 
 /** Non-translatable contact endpoints. */
 export const contactLinks = {
-  email: "hello@nova.example.com",
+  email: "novaecosystem.app@libero.it",
   github: "https://github.com/nova",
   twitter: "https://x.com/novahq",
   linkedin: "https://linkedin.com/company/nova",
