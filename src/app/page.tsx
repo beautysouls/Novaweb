@@ -9,24 +9,30 @@ import { Roadmap } from "@/components/Roadmap";
 import { Downloads } from "@/components/Downloads";
 import { Changelog } from "@/components/Changelog";
 import { Contact } from "@/components/Contact";
+import { Community } from "@/components/Community";
+import { Support } from "@/components/Support";
+import { Ecosystem } from "@/components/Ecosystem";
 import { Footer } from "@/components/Footer";
+import { contactLinks } from "@/lib/data";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "NOVA",
-  slogan: "Costruisci. Crea. Evolvi.",
+  name: "Nova Ecosystem",
+  slogan: "Build. Create. Evolve.",
   description:
-    "Nova è un moderno ecosistema software dedicato alla produttività, alle applicazioni mobili e agli strumenti digitali del futuro.",
+    "Nova Ecosystem is building the next generation productivity ecosystem including NovaDocs, NovaMobile and NovaCloud.",
   url: "https://nova.example.com",
   sameAs: [
-    "https://github.com/nova",
-    "https://x.com/novahq",
-    "https://linkedin.com/company/nova",
+    contactLinks.github,
+    contactLinks.instagram,
+    contactLinks.tiktok,
+    contactLinks.discord,
   ],
   makesOffer: [
     { "@type": "Offer", name: "NovaDocs" },
     { "@type": "Offer", name: "NovaMobile" },
+    { "@type": "Offer", name: "NovaCloud" },
   ],
 };
 
@@ -47,6 +53,9 @@ export default function Home() {
         <Roadmap />
         <Downloads />
         <Changelog />
+        <Ecosystem />
+        <Community />
+        <Support />
         <Contact />
       </main>
       <Footer />

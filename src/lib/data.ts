@@ -64,11 +64,12 @@ export const releases = {
   },
 };
 
-/** Non-translatable contact endpoints. */
+/** Non-translatable contact endpoints and official social links. */
 export const contactLinks = {
   email: "novaecosystem.app@libero.it",
-  github: "https://github.com/nova",
-  twitter: "https://x.com/novahq",
-  linkedin: "https://linkedin.com/company/nova",
-  discord: "https://discord.gg/nova",
+  github: "https://github.com/NovaEcosystemOfficial",
+  instagram: "https://www.instagram.com/novaecosystem",
+  tiktok: "https://www.tiktok.com/@novaecosystem.app",
+  discord: "https://discord.gg/pGegFWK2",
+  paypal: "https://paypal.me/novaecosystem",
 };

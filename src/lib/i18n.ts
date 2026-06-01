@@ -61,10 +61,22 @@ type ChangelogEntry = {
   changes: string[];
 };
 
-type SocialLink = { label: string; handle: string; href: string };
-type FooterColumn = { title: string; links: NavLink[] };
+type SocialLink = { id: string; label: string; handle: string; href: string };
+type FooterLink = { label: string; href: string; external?: boolean };
+type FooterColumn = { title: string; links: FooterLink[] };
 
 type Tag = { id: string; label: string };
+
+type IconLink = { id: string; label: string; href: string };
+
+type EcosystemCard = {
+  id: string;
+  emoji: string;
+  title: string;
+  description: string;
+  statusKey: StatusKey;
+  statusLabel: string;
+};
 
 type ShowcaseFeatureCard = {
   id: string;
@@ -147,8 +159,28 @@ export type Dictionary = {
     githubLabel: string;
     socials: SocialLink[];
   };
+  community: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    buttons: IconLink[];
+  };
+  support: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    button: string;
+  };
+  ecosystem: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    cards: EcosystemCard[];
+  };
   footer: {
-    tagline: string;
+    brand: string;
+    slogan: string;
+    description: string;
     columns: FooterColumn[];
     builtWith: string;
     rights: string;
@@ -452,30 +484,134 @@ const it: Dictionary = {
       "Domande, feedback o idee di collaborazione? Ci farebbe piacere sentirti.",
     githubLabel: "GitHub",
     socials: [
-      { label: "Twitter / X", handle: "@novahq", href: contactLinks.twitter },
-      { label: "LinkedIn", handle: "/company/nova", href: contactLinks.linkedin },
-      { label: "Discord", handle: "Community Nova", href: contactLinks.discord },
+      {
+        id: "instagram",
+        label: "Instagram",
+        handle: "@novaecosystem",
+        href: contactLinks.instagram,
+      },
+      {
+        id: "tiktok",
+        label: "TikTok",
+        handle: "@novaecosystem.app",
+        href: contactLinks.tiktok,
+      },
+      {
+        id: "discord",
+        label: "Discord",
+        handle: "Community Nova",
+        href: contactLinks.discord,
+      },
+      {
+        id: "github",
+        label: "GitHub",
+        handle: "NovaEcosystemOfficial",
+        href: contactLinks.github,
+      },
+    ],
+  },
+  community: {
+    eyebrow: "Community",
+    title: "Unisciti alla community di Nova Ecosystem",
+    description:
+      "Segui lo sviluppo di NovaDocs, NovaMobile e NovaCloud. Entra nella community, condividi idee, segnala bug e aiutaci a plasmare il futuro di Nova Ecosystem.",
+    buttons: [
+      { id: "discord", label: "Entra in Discord", href: contactLinks.discord },
+      {
+        id: "instagram",
+        label: "Segui su Instagram",
+        href: contactLinks.instagram,
+      },
+      { id: "tiktok", label: "Segui su TikTok", href: contactLinks.tiktok },
+      { id: "github", label: "Vai su GitHub", href: contactLinks.github },
+    ],
+  },
+  support: {
+    eyebrow: "Supporto",
+    title: "Sostieni Nova Ecosystem",
+    description:
+      "Nova Ecosystem è un progetto indipendente costruito da zero. Se ti piacciono NovaDocs, NovaMobile e NovaCloud e vuoi sostenere lo sviluppo futuro, offrici un caffè.",
+    button: "Sostieni Nova Ecosystem",
+  },
+  ecosystem: {
+    eyebrow: "Ecosistema",
+    title: "Nova Ecosystem",
+    description:
+      "Un moderno ecosistema di produttività pensato per desktop, mobile e cloud.",
+    cards: [
+      {
+        id: "novadocs",
+        emoji: "📄",
+        title: "NovaDocs",
+        description:
+          "Editor di documenti moderno per produttività e organizzazione.",
+        statusKey: "available",
+        statusLabel: "Attivo",
+      },
+      {
+        id: "novamobile",
+        emoji: "📱",
+        title: "NovaMobile",
+        description: "App companion mobile per l'ecosistema Nova.",
+        statusKey: "inProgress",
+        statusLabel: "In sviluppo",
+      },
+      {
+        id: "novacloud",
+        emoji: "☁️",
+        title: "NovaCloud",
+        description: "Piattaforma cloud per sincronizzazione e archiviazione.",
+        statusKey: "comingSoon",
+        statusLabel: "Prossimamente",
+      },
     ],
   },
   footer: {
-    tagline:
-      "Costruisci. Crea. Evolvi. — un moderno ecosistema software dedicato alla produttività, alle applicazioni mobili e agli strumenti digitali del futuro.",
+    brand: "Nova Ecosystem",
+    slogan: "Build. Create. Evolve.",
+    description:
+      "Un moderno ecosistema di produttività pensato per desktop, mobile e cloud.",
     columns: [
       {
-        title: "Prodotto",
+        title: "Link rapidi",
         links: [
+          { label: "Home", href: "#home" },
           { label: "Prodotti", href: "#products" },
-          { label: "Download", href: "#downloads" },
           { label: "Roadmap", href: "#roadmap" },
-          { label: "Changelog", href: "#changelog" },
+          { label: "Contatti", href: "#contact" },
         ],
       },
       {
-        title: "Azienda",
+        title: "Progetti",
         links: [
-          { label: "Home", href: "#home" },
-          { label: "Contatti", href: "#contact" },
-          { label: "GitHub", href: contactLinks.github },
+          { label: "NovaDocs", href: "#novadocs" },
+          { label: "NovaMobile", href: "#ecosystem" },
+          { label: "NovaCloud", href: "#novacloud" },
+        ],
+      },
+      {
+        title: "Community",
+        links: [
+          { label: "Discord", href: contactLinks.discord, external: true },
+          { label: "Instagram", href: contactLinks.instagram, external: true },
+          { label: "TikTok", href: contactLinks.tiktok, external: true },
+          { label: "GitHub", href: contactLinks.github, external: true },
+        ],
+      },
+      {
+        title: "Supporto",
+        links: [
+          {
+            label: "Sostieni Nova Ecosystem",
+            href: contactLinks.paypal,
+            external: true,
+          },
+        ],
+      },
+      {
+        title: "Contatti",
+        links: [
+          { label: contactLinks.email, href: `mailto:${contactLinks.email}` },
         ],
       },
     ],
@@ -777,30 +913,133 @@ const en: Dictionary = {
       "Questions, feedback or partnership ideas? We'd love to hear from you.",
     githubLabel: "GitHub",
     socials: [
-      { label: "Twitter / X", handle: "@novahq", href: contactLinks.twitter },
-      { label: "LinkedIn", handle: "/company/nova", href: contactLinks.linkedin },
-      { label: "Discord", handle: "Nova Community", href: contactLinks.discord },
+      {
+        id: "instagram",
+        label: "Instagram",
+        handle: "@novaecosystem",
+        href: contactLinks.instagram,
+      },
+      {
+        id: "tiktok",
+        label: "TikTok",
+        handle: "@novaecosystem.app",
+        href: contactLinks.tiktok,
+      },
+      {
+        id: "discord",
+        label: "Discord",
+        handle: "Nova Community",
+        href: contactLinks.discord,
+      },
+      {
+        id: "github",
+        label: "GitHub",
+        handle: "NovaEcosystemOfficial",
+        href: contactLinks.github,
+      },
+    ],
+  },
+  community: {
+    eyebrow: "Community",
+    title: "Join the Nova Ecosystem Community",
+    description:
+      "Follow the development of NovaDocs, NovaMobile and NovaCloud. Join the community, share ideas, report bugs and help shape the future of Nova Ecosystem.",
+    buttons: [
+      { id: "discord", label: "Join Discord", href: contactLinks.discord },
+      {
+        id: "instagram",
+        label: "Follow on Instagram",
+        href: contactLinks.instagram,
+      },
+      { id: "tiktok", label: "Follow on TikTok", href: contactLinks.tiktok },
+      { id: "github", label: "View GitHub", href: contactLinks.github },
+    ],
+  },
+  support: {
+    eyebrow: "Support",
+    title: "Support Nova Ecosystem",
+    description:
+      "Nova Ecosystem is an independent project built from scratch. If you enjoy NovaDocs, NovaMobile and NovaCloud and want to support future development, consider offering a coffee.",
+    button: "Support Nova Ecosystem",
+  },
+  ecosystem: {
+    eyebrow: "Ecosystem",
+    title: "Nova Ecosystem",
+    description:
+      "A modern productivity ecosystem designed for desktop, mobile and cloud.",
+    cards: [
+      {
+        id: "novadocs",
+        emoji: "📄",
+        title: "NovaDocs",
+        description: "Modern document editor for productivity and organization.",
+        statusKey: "available",
+        statusLabel: "Active",
+      },
+      {
+        id: "novamobile",
+        emoji: "📱",
+        title: "NovaMobile",
+        description: "Mobile companion app for the Nova ecosystem.",
+        statusKey: "inProgress",
+        statusLabel: "In Development",
+      },
+      {
+        id: "novacloud",
+        emoji: "☁️",
+        title: "NovaCloud",
+        description: "Cloud platform for synchronization and storage.",
+        statusKey: "comingSoon",
+        statusLabel: "Coming Soon",
+      },
     ],
   },
   footer: {
-    tagline:
-      "Build. Create. Evolve. — a modern software ecosystem focused on productivity, mobile applications, and future digital tools.",
+    brand: "Nova Ecosystem",
+    slogan: "Build. Create. Evolve.",
+    description:
+      "A modern productivity ecosystem designed for desktop, mobile and cloud.",
     columns: [
       {
-        title: "Product",
+        title: "Quick Links",
         links: [
+          { label: "Home", href: "#home" },
           { label: "Products", href: "#products" },
-          { label: "Downloads", href: "#downloads" },
           { label: "Roadmap", href: "#roadmap" },
-          { label: "Changelog", href: "#changelog" },
+          { label: "Contact", href: "#contact" },
         ],
       },
       {
-        title: "Company",
+        title: "Projects",
         links: [
-          { label: "Home", href: "#home" },
-          { label: "Contact", href: "#contact" },
-          { label: "GitHub", href: contactLinks.github },
+          { label: "NovaDocs", href: "#novadocs" },
+          { label: "NovaMobile", href: "#ecosystem" },
+          { label: "NovaCloud", href: "#novacloud" },
+        ],
+      },
+      {
+        title: "Community",
+        links: [
+          { label: "Discord", href: contactLinks.discord, external: true },
+          { label: "Instagram", href: contactLinks.instagram, external: true },
+          { label: "TikTok", href: contactLinks.tiktok, external: true },
+          { label: "GitHub", href: contactLinks.github, external: true },
+        ],
+      },
+      {
+        title: "Support",
+        links: [
+          {
+            label: "Support Nova Ecosystem",
+            href: contactLinks.paypal,
+            external: true,
+          },
+        ],
+      },
+      {
+        title: "Contact",
+        links: [
+          { label: contactLinks.email, href: `mailto:${contactLinks.email}` },
         ],
       },
     ],
