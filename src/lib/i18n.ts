@@ -392,7 +392,7 @@ const it: Dictionary = {
       name: "NovaDocs",
       description:
         "Moderno editor documenti desktop progettato per produttività, semplicità e prestazioni.",
-      version: "v1.0.7",
+      version: "v1.0.8",
       versionLabel: "Versione",
       badges: [
         { id: "windows", label: "Windows" },
@@ -438,6 +438,21 @@ const it: Dictionary = {
     description:
       "Rilasciamo aggiornamenti di continuo. Ecco le ultime novità nell'ecosistema Nova.",
     entries: [
+      {
+        id: "novadocs-108",
+        product: "NovaDocs",
+        version: "v1.0.8",
+        date: "Giugno 2026",
+        changes: [
+          "NovaDrop completamente operativo",
+          "Trasferimento file tramite QR Code",
+          "Correzione import da Firebase Storage",
+          "Risolto errore CORS su download remoti",
+          "Migliorata sincronizzazione NovaCloud",
+          "Migliorati log diagnostici",
+          "Stabilità generale aumentata",
+        ],
+      },
       {
         id: "novadocs-107",
         product: "NovaDocs",
@@ -825,7 +840,7 @@ const en: Dictionary = {
       name: "NovaDocs",
       description:
         "Modern desktop document editor designed for productivity, simplicity and performance.",
-      version: "v1.0.7",
+      version: "v1.0.8",
       versionLabel: "Version",
       badges: [
         { id: "windows", label: "Windows" },
@@ -871,6 +886,21 @@ const en: Dictionary = {
     description:
       "We ship continuously. Here are the latest updates across the Nova ecosystem.",
     entries: [
+      {
+        id: "novadocs-108",
+        product: "NovaDocs",
+        version: "v1.0.8",
+        date: "June 2026",
+        changes: [
+          "NovaDrop fully operational",
+          "QR Code file transfer",
+          "Fixed import from Firebase Storage",
+          "Fixed CORS error on remote downloads",
+          "Improved NovaCloud synchronization",
+          "Improved diagnostic logs",
+          "Increased overall stability",
+        ],
+      },
       {
         id: "novadocs-107",
         product: "NovaDocs",

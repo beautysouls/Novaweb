@@ -56,11 +56,11 @@ export const releases = {
   novadocs: {
     /** Direct download of the Windows installer (.exe). */
     download:
-      "https://github.com/beautysouls/NovaDocs/releases/download/v1.0.7/NovaDocs-Setup-1.0.7.exe",
+      "https://github.com/beautysouls/NovaDocs/releases/download/v1.0.8/NovaDocs-Setup-1.0.8.exe",
     /** Installer filename, used as the suggested download name. */
-    fileName: "NovaDocs-Setup-1.0.7.exe",
+    fileName: "NovaDocs-Setup-1.0.8.exe",
     /** GitHub release page (release notes). */
-    notes: "https://github.com/beautysouls/NovaDocs/releases/tag/v1.0.7",
+    notes: "https://github.com/beautysouls/NovaDocs/releases/tag/v1.0.8",
   },
   novamobile: {
     /** Direct download of the Android APK. Update with each new release. */
