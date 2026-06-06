@@ -88,26 +88,78 @@ export function Roadmap() {
                       {group.statusLabel}
                     </span>
 
-                    <ul
-                      className={`mt-4 flex flex-wrap gap-2.5 ${
-                        isLeft ? "md:justify-end" : ""
+                    <div
+                      className={`mt-4 flex flex-col gap-3 ${
+                        isLeft ? "md:items-end" : ""
                       }`}
                     >
+                      <ul
+                        className={`flex flex-wrap gap-2.5 ${
+                          isLeft ? "md:justify-end" : ""
+                        }`}
+                      >
+                        {group.items.map((entry) => {
+                          const ItemIcon = iconById[entry.id];
+                          if (entry.objectives) return null;
+                          return (
+                            <li
+                              key={entry.id}
+                              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-sm font-medium text-slate-200"
+                            >
+                              {ItemIcon && (
+                                <ItemIcon className="h-3.5 w-3.5 text-slate-400" />
+                              )}
+                              {entry.name}
+                            </li>
+                          );
+                        })}
+                      </ul>
+
                       {group.items.map((entry) => {
+                        if (!entry.objectives?.length) return null;
                         const ItemIcon = iconById[entry.id];
                         return (
-                          <li
+                          <div
                             key={entry.id}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-sm font-medium text-slate-200"
+                            className={`w-full rounded-2xl border border-pink-500/20 bg-pink-500/[0.04] p-4 ${
+                              isLeft ? "md:text-right" : ""
+                            }`}
                           >
-                            {ItemIcon && (
-                              <ItemIcon className="h-3.5 w-3.5 text-slate-400" />
-                            )}
-                            {entry.name}
-                          </li>
+                            <div
+                              className={`flex items-center gap-2 text-sm font-semibold text-white ${
+                                isLeft ? "md:justify-end" : ""
+                              }`}
+                            >
+                              {ItemIcon && (
+                                <ItemIcon className="h-4 w-4 text-pink-300" />
+                              )}
+                              {entry.name}
+                            </div>
+                            <p
+                              className={`mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-pink-300/80 ${
+                                isLeft ? "md:text-right" : ""
+                              }`}
+                            >
+                              {t.roadmap.objectivesLabel}
+                            </p>
+                            <ul
+                              className={`mt-2 flex flex-wrap gap-2 ${
+                                isLeft ? "md:justify-end" : ""
+                              }`}
+                            >
+                              {entry.objectives.map((objective) => (
+                                <li
+                                  key={objective}
+                                  className="rounded-full border border-pink-500/20 bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-200"
+                                >
+                                  {objective}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         );
                       })}
-                    </ul>
+                    </div>
                   </div>
                 </motion.div>
               );

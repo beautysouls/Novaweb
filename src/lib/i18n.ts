@@ -26,10 +26,16 @@ type FeatureItem = {
   templates?: string[];
 };
 
+type RoadmapItem = {
+  id: string;
+  name: string;
+  objectives?: string[];
+};
+
 type RoadmapGroup = {
   statusKey: StatusKey;
   statusLabel: string;
-  items: { id: string; name: string }[];
+  items: RoadmapItem[];
 };
 
 type DownloadItem = StatusItem & {
@@ -135,6 +141,7 @@ export type Dictionary = {
     eyebrow: string;
     title: string;
     description: string;
+    objectivesLabel: string;
     groups: RoadmapGroup[];
   };
   downloads: {
@@ -245,6 +252,22 @@ const it: Dictionary = {
         statusKey: "beta",
         statusLabel: "Beta",
       },
+      {
+        id: "novabeauty",
+        name: "NovaBeauty",
+        tagline: "Gestionale professionale per il settore beauty.",
+        description:
+          "Gestionale professionale per centri estetici, saloni di bellezza e professionisti del settore beauty.",
+        features: [
+          "Gestione clienti",
+          "Appuntamenti",
+          "Storico trattamenti",
+          "Dashboard professionale",
+          "iPhone e iPad",
+        ],
+        statusKey: "developing",
+        statusLabel: "In sviluppo",
+      },
     ],
   },
   showcase: {
@@ -354,6 +377,7 @@ const it: Dictionary = {
     title: "La direzione di Nova",
     description:
       "Uno sguardo trasparente su ciò che è stato rilasciato, ciò che stiamo costruendo e ciò che arriverà.",
+    objectivesLabel: "Obiettivi",
     groups: [
       {
         statusKey: "completed",
@@ -366,6 +390,17 @@ const it: Dictionary = {
         items: [
           { id: "novadocs", name: "NovaDocs" },
           { id: "novamobile", name: "NovaMobile" },
+          {
+            id: "novabeauty",
+            name: "NovaBeauty",
+            objectives: [
+              "Gestione clienti",
+              "Calendario appuntamenti",
+              "Storico trattamenti",
+              "Backup cloud",
+              "Dashboard statistiche",
+            ],
+          },
         ],
       },
       {
@@ -420,6 +455,16 @@ const it: Dictionary = {
         statusKey: "beta",
         statusLabel: "Beta",
         buttonLabel: "Partecipa alla beta",
+      },
+      {
+        id: "novabeauty",
+        name: "NovaBeauty",
+        description:
+          "Gestionale professionale per centri estetici, saloni di bellezza e professionisti del settore beauty.",
+        platform: "iPhone · iPad",
+        statusKey: "developing",
+        statusLabel: "In sviluppo",
+        buttonLabel: "Scopri il progetto",
       },
       {
         id: "future",
@@ -529,7 +574,7 @@ const it: Dictionary = {
     eyebrow: "Community",
     title: "Unisciti alla community di Nova Ecosystem",
     description:
-      "Segui lo sviluppo di NovaDocs, NovaMobile e NovaCloud. Entra nella community, condividi idee, segnala bug e aiutaci a plasmare il futuro di Nova Ecosystem.",
+      "Segui lo sviluppo di NovaDocs, NovaMobile, NovaBeauty e NovaCloud. Entra nella community, condividi idee, segnala bug e aiutaci a plasmare il futuro di Nova Ecosystem.",
     buttons: [
       { id: "discord", label: "Entra in Discord", href: contactLinks.discord },
       {
@@ -545,7 +590,7 @@ const it: Dictionary = {
     eyebrow: "Supporto",
     title: "Sostieni Nova Ecosystem",
     description:
-      "Nova Ecosystem è un progetto indipendente costruito da zero. Se ti piacciono NovaDocs, NovaMobile e NovaCloud e vuoi sostenere lo sviluppo futuro, offrici un caffè.",
+      "Nova Ecosystem è un progetto indipendente costruito da zero. Se ti piacciono NovaDocs, NovaMobile, NovaBeauty e NovaCloud e vuoi sostenere lo sviluppo futuro, offrici un caffè.",
     button: "Sostieni Nova Ecosystem",
   },
   ecosystem: {
@@ -601,6 +646,7 @@ const it: Dictionary = {
         links: [
           { label: "NovaDocs", href: "#novadocs" },
           { label: "NovaMobile", href: "#ecosystem" },
+          { label: "NovaBeauty", href: "#products" },
           { label: "NovaCloud", href: "#novacloud" },
         ],
       },
@@ -692,6 +738,22 @@ const en: Dictionary = {
         ],
         statusKey: "beta",
         statusLabel: "Beta",
+      },
+      {
+        id: "novabeauty",
+        name: "NovaBeauty",
+        tagline: "Professional management for the beauty industry.",
+        description:
+          "Professional management software for beauty centers, salons and beauty industry professionals.",
+        features: [
+          "Client management",
+          "Appointments",
+          "Treatment history",
+          "Professional dashboard",
+          "iPhone and iPad",
+        ],
+        statusKey: "developing",
+        statusLabel: "In Development",
       },
     ],
   },
@@ -802,6 +864,7 @@ const en: Dictionary = {
     title: "Where Nova is headed",
     description:
       "A transparent look at what's shipped, what we're building, and what's coming next.",
+    objectivesLabel: "Goals",
     groups: [
       {
         statusKey: "completed",
@@ -814,6 +877,17 @@ const en: Dictionary = {
         items: [
           { id: "novadocs", name: "NovaDocs" },
           { id: "novamobile", name: "NovaMobile" },
+          {
+            id: "novabeauty",
+            name: "NovaBeauty",
+            objectives: [
+              "Client management",
+              "Appointment calendar",
+              "Treatment history",
+              "Cloud backup",
+              "Statistics dashboard",
+            ],
+          },
         ],
       },
       {
@@ -868,6 +942,16 @@ const en: Dictionary = {
         statusKey: "beta",
         statusLabel: "Beta",
         buttonLabel: "Join Beta",
+      },
+      {
+        id: "novabeauty",
+        name: "NovaBeauty",
+        description:
+          "Professional management software for beauty centers, salons and beauty industry professionals.",
+        platform: "iPhone · iPad",
+        statusKey: "developing",
+        statusLabel: "In Development",
+        buttonLabel: "Discover the project",
       },
       {
         id: "future",
@@ -973,7 +1057,7 @@ const en: Dictionary = {
     eyebrow: "Community",
     title: "Join the Nova Ecosystem Community",
     description:
-      "Follow the development of NovaDocs, NovaMobile and NovaCloud. Join the community, share ideas, report bugs and help shape the future of Nova Ecosystem.",
+      "Follow the development of NovaDocs, NovaMobile, NovaBeauty and NovaCloud. Join the community, share ideas, report bugs and help shape the future of Nova Ecosystem.",
     buttons: [
       { id: "discord", label: "Join Discord", href: contactLinks.discord },
       {
@@ -989,7 +1073,7 @@ const en: Dictionary = {
     eyebrow: "Support",
     title: "Support Nova Ecosystem",
     description:
-      "Nova Ecosystem is an independent project built from scratch. If you enjoy NovaDocs, NovaMobile and NovaCloud and want to support future development, consider offering a coffee.",
+      "Nova Ecosystem is an independent project built from scratch. If you enjoy NovaDocs, NovaMobile, NovaBeauty and NovaCloud and want to support future development, consider offering a coffee.",
     button: "Support Nova Ecosystem",
   },
   ecosystem: {
@@ -1044,6 +1128,7 @@ const en: Dictionary = {
         links: [
           { label: "NovaDocs", href: "#novadocs" },
           { label: "NovaMobile", href: "#ecosystem" },
+          { label: "NovaBeauty", href: "#products" },
           { label: "NovaCloud", href: "#novacloud" },
         ],
       },

@@ -247,6 +247,19 @@ export function Downloads() {
                         <Download className="h-4 w-4" />
                         {item.buttonLabel}
                       </Button>
+                    ) : item.id === "novabeauty" ? (
+                      <Button
+                        href={releases.novabeauty.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        size="md"
+                        variant="secondary"
+                        className="w-full"
+                      >
+                        <Github className="h-4 w-4" />
+                        {item.buttonLabel}
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </Button>
                     ) : (
                       <Button href="#" size="md" className="w-full">
                         <Download className="h-4 w-4" />

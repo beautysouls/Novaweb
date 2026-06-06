@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Download, ArrowUpRight, Check } from "lucide-react";
 import { iconById, productAccent, images, releases } from "@/lib/data";
+import type { LucideIcon } from "lucide-react";
 import { handleProductDownload } from "@/lib/download";
 import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
@@ -22,7 +23,19 @@ const previews: Record<string, React.ReactNode> = {
       <PhoneMockup />
     </div>
   ),
+  novabeauty: (
+    <div className="flex justify-center">
+      <PhoneMockup />
+    </div>
+  ),
 };
+
+function productLearnMoreHref(productId: string): string {
+  if (productId === "novadocs") return "#novadocs";
+  if (productId === "novamobile") return "/nova-mobile-alpha";
+  if (productId === "novabeauty") return releases.novabeauty.github;
+  return "#downloads";
+}
 
 export function Products() {
   const { t } = useLanguage();
@@ -38,8 +51,9 @@ export function Products() {
 
         <div className="mt-16 grid gap-7 lg:grid-cols-2">
           {t.products.items.map((product, i) => {
-            const Icon = iconById[product.id];
-            const accent = productAccent[product.id];
+            const Icon = iconById[product.id] as LucideIcon | undefined;
+            const accent =
+              productAccent[product.id] ?? "from-pink-500 to-purple-500";
             return (
               <motion.div
                 key={product.id}
@@ -126,12 +140,14 @@ export function Products() {
                       </Button>
                     )}
                     <Button
-                      href={
-                        product.id === "novadocs"
-                          ? "#novadocs"
-                          : product.id === "novamobile"
-                            ? "/nova-mobile-alpha"
-                            : "#downloads"
+                      href={productLearnMoreHref(product.id)}
+                      target={
+                        product.id === "novabeauty" ? "_blank" : undefined
+                      }
+                      rel={
+                        product.id === "novabeauty"
+                          ? "noopener noreferrer"
+                          : undefined
                       }
                       size="sm"
                       variant="secondary"

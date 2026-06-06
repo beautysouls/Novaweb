@@ -11,6 +11,7 @@ import {
   Sparkles,
   Boxes,
   ClipboardList,
+  Flower2,
 } from "lucide-react";
 
 export const BRAND = "NOVA";
@@ -27,12 +28,14 @@ export type StatusKey =
   | "comingSoon"
   | "completed"
   | "inProgress"
+  | "developing"
   | "planned";
 
 /** Icons are language-agnostic and looked up by stable id. */
 export const iconById: Record<string, LucideIcon> = {
   novadocs: FileText,
   novamobile: Smartphone,
+  novabeauty: Flower2,
   website: Boxes,
   cloud: Cloud,
   account: UserCircle,
@@ -49,6 +52,7 @@ export const iconById: Record<string, LucideIcon> = {
 export const productAccent: Record<string, string> = {
   novadocs: "from-blue-500 to-indigo-500",
   novamobile: "from-violet-500 to-purple-500",
+  novabeauty: "from-pink-500 to-purple-500",
 };
 
 /** Non-translatable external release URLs. */
@@ -71,6 +75,9 @@ export const releases = {
     fileName: "app-release.apk",
     /** GitHub issues tracker for bug reports and feedback. */
     issues: "https://github.com/NovaEcosystemOfficial/NovaMobile/issues",
+  },
+  novabeauty: {
+    github: "https://github.com/NovaEcosystemOfficial/NovaBeauty",
   },
 };
 
