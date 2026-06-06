@@ -21,7 +21,7 @@ const jsonLd = {
   name: "Nova Ecosystem",
   slogan: "Build. Create. Evolve.",
   description:
-    "Nova Ecosystem is building the next generation productivity ecosystem including NovaDocs, NovaMobile, NovaBeauty and NovaCloud.",
+    "Nova Ecosystem is building the next generation productivity ecosystem including NovaDocs, NovaMobile, NovaBeauty, NovaTK and NovaCloud.",
   url: "https://nova.example.com",
   sameAs: [
     contactLinks.github,
@@ -33,6 +33,7 @@ const jsonLd = {
     { "@type": "Offer", name: "NovaDocs" },
     { "@type": "Offer", name: "NovaMobile" },
     { "@type": "Offer", name: "NovaBeauty" },
+    { "@type": "Offer", name: "NovaTK" },
     { "@type": "Offer", name: "NovaCloud" },
   ],
 };

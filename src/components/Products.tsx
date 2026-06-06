@@ -1,9 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, ArrowUpRight, Check } from "lucide-react";
-import { iconById, productAccent, images, releases } from "@/lib/data";
+import { Download, ArrowUpRight, Check, Github, Clock } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import {
+  iconById,
+  productAccent,
+  images,
+  releases,
+  getProductRepo,
+} from "@/lib/data";
 import { handleProductDownload } from "@/lib/download";
 import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
@@ -23,19 +29,17 @@ const previews: Record<string, React.ReactNode> = {
       <PhoneMockup />
     </div>
   ),
+  novatk: (
+    <div className="flex justify-center">
+      <PhoneMockup />
+    </div>
+  ),
   novabeauty: (
     <div className="flex justify-center">
       <PhoneMockup />
     </div>
   ),
 };
-
-function productLearnMoreHref(productId: string): string {
-  if (productId === "novadocs") return "#novadocs";
-  if (productId === "novamobile") return "/nova-mobile-alpha";
-  if (productId === "novabeauty") return releases.novabeauty.github;
-  return "#downloads";
-}
 
 export function Products() {
   const { t } = useLanguage();
@@ -53,7 +57,9 @@ export function Products() {
           {t.products.items.map((product, i) => {
             const Icon = iconById[product.id] as LucideIcon | undefined;
             const accent =
-              productAccent[product.id] ?? "from-pink-500 to-purple-500";
+              productAccent[product.id] ?? "from-blue-500 to-indigo-500";
+            const repoUrl = getProductRepo(product.id);
+
             return (
               <motion.div
                 key={product.id}
@@ -67,7 +73,6 @@ export function Products() {
                   className={`pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-gradient-to-br ${accent} opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40`}
                 />
 
-                {/* Preview */}
                 <div className="relative flex h-56 items-center justify-center overflow-hidden border-b border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent px-6 pt-8">
                   {previews[product.id]}
                 </div>
@@ -113,8 +118,42 @@ export function Products() {
                     ))}
                   </ul>
 
+                  {product.badges && product.badges.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {product.badges.map((badge) => (
+                        <span
+                          key={badge.id}
+                          className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200"
+                        >
+                          {badge.label}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   <div className="mt-7 flex flex-wrap gap-3">
-                    {product.id === "novamobile" ? (
+                    {repoUrl ? (
+                      <>
+                        <Button
+                          href={repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          size="sm"
+                        >
+                          <Github className="h-4 w-4" />
+                          {t.products.githubButton}
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="cursor-not-allowed opacity-70"
+                          disabled
+                        >
+                          <Clock className="h-4 w-4" />
+                          {t.products.testFlightButton}
+                        </Button>
+                      </>
+                    ) : product.id === "novamobile" ? (
                       <Button
                         href={releases.novamobile.apk}
                         download={releases.novamobile.fileName}
@@ -139,22 +178,22 @@ export function Products() {
                         {t.products.download}
                       </Button>
                     )}
-                    <Button
-                      href={productLearnMoreHref(product.id)}
-                      target={
-                        product.id === "novabeauty" ? "_blank" : undefined
-                      }
-                      rel={
-                        product.id === "novabeauty"
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      size="sm"
-                      variant="secondary"
-                    >
-                      {t.products.learnMore}
-                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Button>
+                    {!repoUrl && (
+                      <Button
+                        href={
+                          product.id === "novadocs"
+                            ? "#novadocs"
+                            : product.id === "novamobile"
+                              ? "/nova-mobile-alpha"
+                              : "#downloads"
+                        }
+                        size="sm"
+                        variant="secondary"
+                      >
+                        {t.products.learnMore}
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </motion.div>

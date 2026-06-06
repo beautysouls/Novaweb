@@ -11,6 +11,7 @@ import {
   Sparkles,
   Boxes,
   ClipboardList,
+  Dumbbell,
   Flower2,
 } from "lucide-react";
 
@@ -24,6 +25,7 @@ export const images = {
 
 export type StatusKey =
   | "available"
+  | "alpha"
   | "beta"
   | "comingSoon"
   | "completed"
@@ -35,6 +37,7 @@ export type StatusKey =
 export const iconById: Record<string, LucideIcon> = {
   novadocs: FileText,
   novamobile: Smartphone,
+  novatk: Dumbbell,
   novabeauty: Flower2,
   website: Boxes,
   cloud: Cloud,
@@ -52,6 +55,7 @@ export const iconById: Record<string, LucideIcon> = {
 export const productAccent: Record<string, string> = {
   novadocs: "from-blue-500 to-indigo-500",
   novamobile: "from-violet-500 to-purple-500",
+  novatk: "from-rose-500 to-orange-500",
   novabeauty: "from-pink-500 to-purple-500",
 };
 
@@ -76,10 +80,21 @@ export const releases = {
     /** GitHub issues tracker for bug reports and feedback. */
     issues: "https://github.com/NovaEcosystemOfficial/NovaMobile/issues",
   },
+  novatk: {
+    version: "Alpha",
+    repo: "https://github.com/NovaEcosystemOfficial/NovaTK",
+  },
   novabeauty: {
-    github: "https://github.com/NovaEcosystemOfficial/NovaBeauty",
+    version: "Alpha",
+    repo: "https://github.com/NovaEcosystemOfficial/NovaBeauty",
   },
 };
+
+export function getProductRepo(id: string): string | undefined {
+  if (id === "novatk") return releases.novatk.repo;
+  if (id === "novabeauty") return releases.novabeauty.repo;
+  return undefined;
+}
 
 /** Non-translatable contact endpoints and official social links. */
 export const contactLinks = {

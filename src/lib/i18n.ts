@@ -1,4 +1,4 @@
-import type { StatusKey } from "./data";
+﻿import type { StatusKey } from "./data";
 import { contactLinks } from "./data";
 
 export type Lang = "it" | "en";
@@ -16,6 +16,7 @@ type ProductItem = StatusItem & {
   tagline: string;
   description: string;
   features: string[];
+  badges?: Tag[];
 };
 
 type FeatureItem = {
@@ -42,7 +43,10 @@ type DownloadItem = StatusItem & {
   name: string;
   description: string;
   platform: string;
+  availability?: string;
   buttonLabel: string;
+  secondaryButtonLabel?: string;
+  secondaryDisabled?: boolean;
 };
 
 type DownloadBadge = { id: "windows" | "stable" | "opensource"; label: string };
@@ -107,6 +111,8 @@ export type Dictionary = {
     description: string;
     download: string;
     learnMore: string;
+    githubButton: string;
+    testFlightButton: string;
     items: ProductItem[];
   };
   showcase: {
@@ -221,6 +227,8 @@ const it: Dictionary = {
       "Un ecosistema curato di app dal design impeccabile, costruite per velocità, chiarezza ed evoluzione continua.",
     download: "Scarica",
     learnMore: "Scopri di più",
+    githubButton: "Repository GitHub",
+    testFlightButton: "Prossimamente TestFlight",
     items: [
       {
         id: "novadocs",
@@ -253,20 +261,41 @@ const it: Dictionary = {
         statusLabel: "Beta",
       },
       {
+        id: "novatk",
+        name: "NovaTK",
+        tagline: "Fitness tracker personale per iPhone.",
+        description:
+          "Fitness tracker personale per iPhone sviluppato con SwiftUI e HealthKit. Pensato per allenamenti, progressi fisici e monitoraggio attività.",
+        features: [
+          "Schede allenamento",
+          "Monitoraggio peso",
+          "HealthKit",
+          "Widget iOS",
+          "Cronologia allenamenti",
+        ],
+        badges: [
+          { id: "ios", label: "iOS" },
+          { id: "alpha", label: "Alpha" },
+          { id: "swiftui", label: "SwiftUI" },
+        ],
+        statusKey: "alpha",
+        statusLabel: "Alpha",
+      },
+      {
         id: "novabeauty",
         name: "NovaBeauty",
-        tagline: "Gestionale professionale per il settore beauty.",
+        tagline: "Gestionale per centri estetici e beauty.",
         description:
-          "Gestionale professionale per centri estetici, saloni di bellezza e professionisti del settore beauty.",
+          "Gestionale professionale per centri estetici, parrucchieri e attività beauty.",
         features: [
           "Gestione clienti",
           "Appuntamenti",
           "Storico trattamenti",
-          "Dashboard professionale",
-          "iPhone e iPad",
+          "Dashboard attività",
         ],
-        statusKey: "developing",
-        statusLabel: "In sviluppo",
+        badges: [{ id: "alpha", label: "Alpha" }],
+        statusKey: "alpha",
+        statusLabel: "Alpha",
       },
     ],
   },
@@ -382,23 +411,40 @@ const it: Dictionary = {
       {
         statusKey: "completed",
         statusLabel: "Completato",
-        items: [{ id: "website", name: "Sito Nova" }],
+        items: [
+          { id: "website", name: "Sito Nova" },
+          { id: "novadocs", name: "NovaDocs" },
+        ],
       },
       {
         statusKey: "inProgress",
         statusLabel: "In corso",
+        items: [{ id: "novamobile", name: "NovaMobile" }],
+      },
+      {
+        statusKey: "developing",
+        statusLabel: "In sviluppo",
         items: [
-          { id: "novadocs", name: "NovaDocs" },
-          { id: "novamobile", name: "NovaMobile" },
+          {
+            id: "novatk",
+            name: "NovaTK",
+            objectives: [
+              "Completamento Workout Session",
+              "Cronologia allenamenti",
+              "Integrazione HealthKit avanzata",
+              "Widget attività",
+              "Dashboard progressi",
+              "Esportazione dati",
+            ],
+          },
           {
             id: "novabeauty",
             name: "NovaBeauty",
             objectives: [
               "Gestione clienti",
-              "Calendario appuntamenti",
+              "Appuntamenti",
               "Storico trattamenti",
-              "Backup cloud",
-              "Dashboard statistiche",
+              "Dashboard attività",
             ],
           },
         ],
@@ -457,14 +503,30 @@ const it: Dictionary = {
         buttonLabel: "Partecipa alla beta",
       },
       {
+        id: "novatk",
+        name: "NovaTK",
+        description:
+          "Fitness tracker personale per iPhone con SwiftUI e HealthKit.",
+        platform: "iOS",
+        availability: "Sviluppo attivo",
+        statusKey: "alpha",
+        statusLabel: "Alpha",
+        buttonLabel: "Repository GitHub",
+        secondaryButtonLabel: "Prossimamente TestFlight",
+        secondaryDisabled: true,
+      },
+      {
         id: "novabeauty",
         name: "NovaBeauty",
         description:
-          "Gestionale professionale per centri estetici, saloni di bellezza e professionisti del settore beauty.",
-        platform: "iPhone · iPad",
-        statusKey: "developing",
-        statusLabel: "In sviluppo",
-        buttonLabel: "Scopri il progetto",
+          "Gestionale professionale per centri estetici, parrucchieri e attività beauty.",
+        platform: "iOS",
+        availability: "Sviluppo attivo",
+        statusKey: "alpha",
+        statusLabel: "Alpha",
+        buttonLabel: "Repository GitHub",
+        secondaryButtonLabel: "Prossimamente TestFlight",
+        secondaryDisabled: true,
       },
       {
         id: "future",
@@ -574,7 +636,7 @@ const it: Dictionary = {
     eyebrow: "Community",
     title: "Unisciti alla community di Nova Ecosystem",
     description:
-      "Segui lo sviluppo di NovaDocs, NovaMobile, NovaBeauty e NovaCloud. Entra nella community, condividi idee, segnala bug e aiutaci a plasmare il futuro di Nova Ecosystem.",
+      "Segui lo sviluppo di NovaDocs, NovaMobile, NovaBeauty, NovaTK e NovaCloud. Entra nella community, condividi idee, segnala bug e aiutaci a plasmare il futuro di Nova Ecosystem.",
     buttons: [
       { id: "discord", label: "Entra in Discord", href: contactLinks.discord },
       {
@@ -590,7 +652,7 @@ const it: Dictionary = {
     eyebrow: "Supporto",
     title: "Sostieni Nova Ecosystem",
     description:
-      "Nova Ecosystem è un progetto indipendente costruito da zero. Se ti piacciono NovaDocs, NovaMobile, NovaBeauty e NovaCloud e vuoi sostenere lo sviluppo futuro, offrici un caffè.",
+      "Nova Ecosystem è un progetto indipendente costruito da zero. Se ti piacciono NovaDocs, NovaMobile, NovaBeauty, NovaTK e NovaCloud e vuoi sostenere lo sviluppo futuro, offrici un caffè.",
     button: "Sostieni Nova Ecosystem",
   },
   ecosystem: {
@@ -646,6 +708,7 @@ const it: Dictionary = {
         links: [
           { label: "NovaDocs", href: "#novadocs" },
           { label: "NovaMobile", href: "#ecosystem" },
+          { label: "NovaTK", href: "#products" },
           { label: "NovaBeauty", href: "#products" },
           { label: "NovaCloud", href: "#novacloud" },
         ],
@@ -708,6 +771,8 @@ const en: Dictionary = {
       "A focused ecosystem of beautifully designed apps — built for speed, clarity and continuous evolution.",
     download: "Download",
     learnMore: "Learn More",
+    githubButton: "GitHub Repository",
+    testFlightButton: "TestFlight Coming Soon",
     items: [
       {
         id: "novadocs",
@@ -740,20 +805,41 @@ const en: Dictionary = {
         statusLabel: "Beta",
       },
       {
+        id: "novatk",
+        name: "NovaTK",
+        tagline: "Personal fitness tracker for iPhone.",
+        description:
+          "Personal fitness tracker for iPhone built with SwiftUI and HealthKit. Designed for workouts, physical progress and activity monitoring.",
+        features: [
+          "Workout cards",
+          "Weight tracking",
+          "HealthKit",
+          "iOS widgets",
+          "Workout history",
+        ],
+        badges: [
+          { id: "ios", label: "iOS" },
+          { id: "alpha", label: "Alpha" },
+          { id: "swiftui", label: "SwiftUI" },
+        ],
+        statusKey: "alpha",
+        statusLabel: "Alpha",
+      },
+      {
         id: "novabeauty",
         name: "NovaBeauty",
-        tagline: "Professional management for the beauty industry.",
+        tagline: "Management app for beauty salons.",
         description:
-          "Professional management software for beauty centers, salons and beauty industry professionals.",
+          "Professional management software for beauty centers, hair salons and wellness businesses.",
         features: [
           "Client management",
           "Appointments",
           "Treatment history",
-          "Professional dashboard",
-          "iPhone and iPad",
+          "Activity dashboard",
         ],
-        statusKey: "developing",
-        statusLabel: "In Development",
+        badges: [{ id: "alpha", label: "Alpha" }],
+        statusKey: "alpha",
+        statusLabel: "Alpha",
       },
     ],
   },
@@ -869,23 +955,40 @@ const en: Dictionary = {
       {
         statusKey: "completed",
         statusLabel: "Completed",
-        items: [{ id: "website", name: "Nova Website" }],
+        items: [
+          { id: "website", name: "Nova Website" },
+          { id: "novadocs", name: "NovaDocs" },
+        ],
       },
       {
         statusKey: "inProgress",
         statusLabel: "In Progress",
+        items: [{ id: "novamobile", name: "NovaMobile" }],
+      },
+      {
+        statusKey: "developing",
+        statusLabel: "In Development",
         items: [
-          { id: "novadocs", name: "NovaDocs" },
-          { id: "novamobile", name: "NovaMobile" },
+          {
+            id: "novatk",
+            name: "NovaTK",
+            objectives: [
+              "Workout Session completion",
+              "Workout history",
+              "Advanced HealthKit integration",
+              "Activity widgets",
+              "Progress dashboard",
+              "Data export",
+            ],
+          },
           {
             id: "novabeauty",
             name: "NovaBeauty",
             objectives: [
               "Client management",
-              "Appointment calendar",
+              "Appointments",
               "Treatment history",
-              "Cloud backup",
-              "Statistics dashboard",
+              "Activity dashboard",
             ],
           },
         ],
@@ -944,14 +1047,30 @@ const en: Dictionary = {
         buttonLabel: "Join Beta",
       },
       {
+        id: "novatk",
+        name: "NovaTK",
+        description:
+          "Personal fitness tracker for iPhone with SwiftUI and HealthKit.",
+        platform: "iOS",
+        availability: "Active development",
+        statusKey: "alpha",
+        statusLabel: "Alpha",
+        buttonLabel: "GitHub Repository",
+        secondaryButtonLabel: "TestFlight Coming Soon",
+        secondaryDisabled: true,
+      },
+      {
         id: "novabeauty",
         name: "NovaBeauty",
         description:
-          "Professional management software for beauty centers, salons and beauty industry professionals.",
-        platform: "iPhone · iPad",
-        statusKey: "developing",
-        statusLabel: "In Development",
-        buttonLabel: "Discover the project",
+          "Professional management software for beauty centers, hair salons and wellness businesses.",
+        platform: "iOS",
+        availability: "Active development",
+        statusKey: "alpha",
+        statusLabel: "Alpha",
+        buttonLabel: "GitHub Repository",
+        secondaryButtonLabel: "TestFlight Coming Soon",
+        secondaryDisabled: true,
       },
       {
         id: "future",
@@ -1057,7 +1176,7 @@ const en: Dictionary = {
     eyebrow: "Community",
     title: "Join the Nova Ecosystem Community",
     description:
-      "Follow the development of NovaDocs, NovaMobile, NovaBeauty and NovaCloud. Join the community, share ideas, report bugs and help shape the future of Nova Ecosystem.",
+      "Follow the development of NovaDocs, NovaMobile, NovaBeauty, NovaTK and NovaCloud. Join the community, share ideas, report bugs and help shape the future of Nova Ecosystem.",
     buttons: [
       { id: "discord", label: "Join Discord", href: contactLinks.discord },
       {
@@ -1073,7 +1192,7 @@ const en: Dictionary = {
     eyebrow: "Support",
     title: "Support Nova Ecosystem",
     description:
-      "Nova Ecosystem is an independent project built from scratch. If you enjoy NovaDocs, NovaMobile, NovaBeauty and NovaCloud and want to support future development, consider offering a coffee.",
+      "Nova Ecosystem is an independent project built from scratch. If you enjoy NovaDocs, NovaMobile, NovaBeauty, NovaTK and NovaCloud and want to support future development, consider offering a coffee.",
     button: "Support Nova Ecosystem",
   },
   ecosystem: {
@@ -1128,6 +1247,7 @@ const en: Dictionary = {
         links: [
           { label: "NovaDocs", href: "#novadocs" },
           { label: "NovaMobile", href: "#ecosystem" },
+          { label: "NovaTK", href: "#products" },
           { label: "NovaBeauty", href: "#products" },
           { label: "NovaCloud", href: "#novacloud" },
         ],

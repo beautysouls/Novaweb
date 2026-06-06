@@ -24,6 +24,12 @@ const statusMeta: Partial<
     dot: "bg-blue-400",
     label: "text-blue-300",
   },
+  developing: {
+    icon: Loader2,
+    ring: "ring-pink-500/40",
+    dot: "bg-pink-400",
+    label: "text-pink-300",
+  },
   planned: {
     icon: CircleDashed,
     ring: "ring-violet-500/40",
@@ -45,7 +51,6 @@ export function Roadmap() {
         />
 
         <div className="relative mt-16">
-          {/* Vertical line */}
           <div className="absolute left-4 top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-emerald-400/50 via-blue-400/40 to-violet-400/30 md:left-1/2 md:-translate-x-1/2" />
 
           <div className="flex flex-col gap-10">
@@ -53,10 +58,13 @@ export function Roadmap() {
               const meta = statusMeta[group.statusKey] ?? statusMeta.planned!;
               const StatusIcon = meta.icon;
               const isLeft = groupIndex % 2 === 0;
+              const isActive =
+                group.statusKey === "inProgress" ||
+                group.statusKey === "developing";
 
               return (
                 <motion.div
-                  key={group.statusKey}
+                  key={`${group.statusKey}-${groupIndex}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
@@ -65,7 +73,6 @@ export function Roadmap() {
                     isLeft ? "md:pr-12 md:text-right" : "md:ml-auto md:pl-12"
                   }`}
                 >
-                  {/* Node */}
                   <span
                     className={`absolute left-0 top-1 flex h-9 w-9 items-center justify-center rounded-full bg-nova-surface ring-2 ${meta.ring} md:left-auto ${
                       isLeft
@@ -75,7 +82,7 @@ export function Roadmap() {
                   >
                     <StatusIcon
                       className={`h-4 w-4 ${meta.label} ${
-                        group.statusKey === "inProgress" ? "animate-spin" : ""
+                        isActive ? "animate-spin" : ""
                       }`}
                     />
                   </span>

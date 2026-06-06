@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 const styles: Record<StatusKey, string> = {
   available: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30",
   completed: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30",
+  alpha: "bg-orange-500/15 text-orange-300 ring-orange-500/30",
   beta: "bg-amber-500/15 text-amber-300 ring-amber-500/30",
   inProgress: "bg-blue-500/15 text-blue-300 ring-blue-500/30",
   developing: "bg-pink-500/15 text-pink-300 ring-purple-500/30",

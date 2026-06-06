@@ -12,7 +12,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { iconById, releases } from "@/lib/data";
+import { iconById, releases, getProductRepo } from "@/lib/data";
 import { handleProductDownload } from "@/lib/download";
 import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
@@ -181,7 +181,7 @@ export function Downloads() {
             {t.downloads.moreHeading}
           </h3>
 
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.downloads.items.map((item, i) => {
               const Icon = iconById[item.id];
               const soon = item.statusKey === "comingSoon";
@@ -214,9 +214,10 @@ export function Downloads() {
 
                   <p className="relative mt-4 text-xs font-medium uppercase tracking-wider text-slate-500">
                     {item.platform}
+                    {item.availability ? ` · ${item.availability}` : ""}
                   </p>
 
-                  <div className="relative mt-5">
+                  <div className="relative mt-5 flex flex-col gap-3">
                     {soon ? (
                       <Button
                         variant="secondary"
@@ -247,19 +248,28 @@ export function Downloads() {
                         <Download className="h-4 w-4" />
                         {item.buttonLabel}
                       </Button>
-                    ) : item.id === "novabeauty" ? (
-                      <Button
-                        href={releases.novabeauty.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        size="md"
-                        variant="secondary"
-                        className="w-full"
-                      >
-                        <Github className="h-4 w-4" />
-                        {item.buttonLabel}
-                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </Button>
+                    ) : getProductRepo(item.id) ? (
+                      <>
+                        <Button
+                          href={getProductRepo(item.id)!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          size="md"
+                          className="w-full"
+                        >
+                          <Github className="h-4 w-4" />
+                          {item.buttonLabel}
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="md"
+                          className="w-full cursor-not-allowed opacity-70"
+                          disabled={item.secondaryDisabled}
+                        >
+                          <Clock className="h-4 w-4" />
+                          {item.secondaryButtonLabel}
+                        </Button>
+                      </>
                     ) : (
                       <Button href="#" size="md" className="w-full">
                         <Download className="h-4 w-4" />
